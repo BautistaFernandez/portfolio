@@ -1,24 +1,24 @@
 ---
 ---
 
-<section id="hero" class="min-h-screen flex items-center pt-20 pb-12">
+<section id="hero" class="min-h-screen flex items-center pt-24 pb-12">
   <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-[1fr_auto] gap-12 items-center">
+    <div class="grid md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
       <div>
-        <p class="font-mono text-sm text-teal-retro mb-4 flex items-center gap-2">
+        <p class="font-mono text-xs sm:text-sm text-teal-retro mb-4 flex items-center gap-2">
           <span class="inline-block w-2 h-2 bg-mint rounded-full animate-pulse"></span>
           Available for freelance work
         </p>
 
-        <h1 class="font-pixelbig text-7xl md:text-8xl text-mint mb-6 glitch">
-          [Bautista Fernández]
+        <h1 class="font-pixelbig text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-mint mb-6 glitch break-words" data-text="Bautista Fernández">
+          Bautista Fernández
         </h1>
 
-        <p class="font-typewriter text-2xl md:text-3xl text-teal-retro mb-8">
+        <p class="font-typewriter text-xl sm:text-2xl md:text-3xl text-teal-retro mb-8">
           Legacy systems modernization specialist<span class="cursor">_</span>
         </p>
 
-        <p class="font-mono text-base text-mint/70 max-w-xl mb-10 leading-relaxed">
+        <p class="font-mono text-sm sm:text-base text-mint/70 max-w-xl mb-10 leading-relaxed">
           I help businesses bring outdated systems into the modern era. .NET migrations, API integrations, and process automation that actually works.
         </p>
 
@@ -50,6 +50,68 @@
 </section>
 
 <style>
+  .glitch {
+    position: relative;
+    animation: glitch-skew 4s infinite linear alternate-reverse;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .glitch::before {
+    animation: glitch-anim-1 3s infinite linear alternate-reverse;
+    color: #6dbcb9;
+    z-index: -1;
+  }
+
+  .glitch::after {
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+    color: #4888b7;
+    z-index: -2;
+  }
+
+  @keyframes glitch-anim-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 2px); }
+    80% { transform: translate(2px, -1px); }
+  }
+
+  @keyframes glitch-anim-2 {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(2px, -1px); }
+    50% { transform: translate(-1px, 2px); }
+    75% { transform: translate(1px, 1px); }
+  }
+
+  @keyframes glitch-skew {
+    0%, 100% { transform: skew(0deg); }
+    20% { transform: skew(0.5deg); }
+    40% { transform: skew(-0.3deg); }
+    60% { transform: skew(0.2deg); }
+    80% { transform: skew(-0.4deg); }
+  }
+
+  .cursor {
+    display: inline-block;
+    color: #8cefb6;
+    animation: blink 1s infinite;
+    font-weight: bold;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+</style><style>
   .glitch {
     position: relative;
     animation: glitch-skew 4s infinite linear alternate-reverse;
