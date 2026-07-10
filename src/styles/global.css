@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Fuentes desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&family=JetBrains+Mono:wght@400;500;700&family=Press+Start+2P&display=swap');
+
+@theme {
+  --color-plum: #0c1024;/*#372134;*/
+  --color-indigo: #0a3354; /*#474476;*/
+  --color-blue-retro: #057f8e; /*#4888b7;*/
+  --color-teal-retro: #04c894; /*#6dbcb9;*/
+  --color-mint: #b9eba7; /*#8cefb6;*/
+
+  --font-pixel: "Press Start 2P", monospace;
+  --font-pixelbig: "VT323", monospace;
+  --font-typewriter: "Special Elite", serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-plum);
+  color: var(--color-mint);
+  font-family: var(--font-mono);
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}

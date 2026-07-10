@@ -1,0 +1,163 @@
+---
+const socials = [
+  {
+    label: 'Email',
+    value: 'bautistafbuteler@gmail.com',
+    href: 'mailto:bautistafbuteler@gmail.com',
+    icon: '✉',
+  },
+  {
+    label: 'GitHub',
+    value: '@BautistaFernandez',
+    href: 'https://github.com/BautistaFernandez',
+    icon: '⌘',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'https://www.linkedin.com/in/bautista-fernandez-buteler/',
+    href: 'https://www.linkedin.com/in/bautista-fernandez-buteler/',
+    icon: '⚉',
+  },
+];
+---
+
+<section id="contact" class="py-24 bg-indigo/10">
+  <div class="container mx-auto px-6">
+    <div class="mb-12">
+      <p class="font-mono text-sm text-teal-retro mb-2">// 05</p>
+      <h2 class="font-pixelbig text-5xl md:text-6xl text-mint mb-4">Let's talk</h2>
+      <p class="font-mono text-mint/70 max-w-2xl">
+        Have a project in mind? Need help modernizing something old, or building something new? Drop me a message.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-[2fr_1fr] gap-12">
+
+      <div class="relative">
+        <div class="border-2 border-mint bg-plum p-8 relative">
+          <div class="absolute -top-3 left-4 bg-plum px-2">
+            <p class="font-pixel text-mint text-xs">NEW MESSAGE</p>
+          </div>
+
+          <form
+            action="https://formspree.io/f/maqggedn"
+            method="POST"
+            class="space-y-6 mt-2"
+            id="contact-form"
+          >
+            <div>
+              <label for="name" class="block font-mono text-xs text-teal-retro uppercase tracking-wider mb-2">
+                ▸ Your name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="How should I call you?"
+                class="w-full bg-plum border-2 border-indigo focus:border-mint text-mint font-mono px-4 py-3 outline-none transition-colors placeholder:text-mint/30"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block font-mono text-xs text-teal-retro uppercase tracking-wider mb-2">
+                ▸ Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="where.to.reply@you.com"
+                class="w-full bg-plum border-2 border-indigo focus:border-mint text-mint font-mono px-4 py-3 outline-none transition-colors placeholder:text-mint/30"
+              />
+            </div>
+
+            <div>
+              <label for="subject" class="block font-mono text-xs text-teal-retro uppercase tracking-wider mb-2">
+                ▸ Subject
+              </label>
+              <select
+                id="subject"
+                name="subject"
+                class="w-full bg-plum border-2 border-indigo focus:border-mint text-mint font-mono px-4 py-3 outline-none transition-colors"
+              >
+                <option value="project">New project</option>
+                <option value="consulting">Consulting</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block font-mono text-xs text-teal-retro uppercase tracking-wider mb-2">
+                ▸ Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="6"
+                placeholder="Tell me about what you're building..."
+                class="w-full bg-plum border-2 border-indigo focus:border-mint text-mint font-mono px-4 py-3 outline-none transition-colors placeholder:text-mint/30 resize-none"
+              ></textarea>
+            </div>
+
+            <div class="flex items-center justify-between flex-wrap gap-4">
+              <p class="font-mono text-xs text-mint/50">
+                <span class="text-teal-retro">i</span> Reply within 24-48hs
+              </p>
+              <button
+                type="submit"
+                class="group px-8 py-3 bg-mint text-plum font-mono font-bold border-2 border-mint hover:bg-transparent hover:text-mint transition-all flex items-center gap-3"
+              >
+                <span>SEND MESSAGE</span>
+                <span class="group-hover:translate-x-1 transition-transform">▸</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="absolute -bottom-2 -right-2 w-full h-full border-2 border-mint/30 -z-10"></div>
+      </div>
+
+      <div class="space-y-4">
+        <p class="font-mono text-xs text-teal-retro uppercase tracking-wider mb-4">
+          // or reach out directly
+        </p>
+
+        {socials.map((social) => (
+            <a
+                href={social.href}
+                target={social.href.startsWith('http') ? '_blank' : undefined}
+                rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="group flex items-center gap-4 p-4 border-2 border-indigo bg-plum hover:border-mint transition-all"
+            >
+                <div class="w-12 h-12 border-2 border-mint bg-indigo/30 flex items-center justify-center font-pixelbig text-2xl text-mint group-hover:bg-mint group-hover:text-plum transition-all">
+                {social.icon}
+                </div>
+                <div class="flex-1 min-w-0">
+                <p class="font-mono text-xs text-teal-retro uppercase tracking-wider mb-1">
+                    {social.label}
+                </p>
+                <p class="font-mono text-sm text-mint truncate group-hover:text-mint">
+                    {social.value}
+                </p>
+                </div>
+                <span class="font-mono text-mint/40 group-hover:text-mint group-hover:translate-x-1 transition-all">↗</span>
+            </a>
+        ))}
+
+        <div class="mt-8 p-4 border-2 border-dashed border-teal-retro/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="inline-block w-2 h-2 bg-mint rounded-full animate-pulse"></span>
+            <p class="font-pixel text-xs text-mint">STATUS</p>
+          </div>
+          <p class="font-mono text-sm text-mint/80">
+            Available for new projects starting <span class="text-teal-retro">Q1 2026</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

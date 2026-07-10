@@ -1,0 +1,106 @@
+---
+const services = [
+  {
+    id: '01',
+    icon: '⚙',
+    title: 'Legacy Migration',
+    description: 'Modernize outdated systems without losing what already works. From VB6, WinForms, or old .NET Framework to current .NET.',
+    items: [
+      'Codebase analysis & migration plan',
+      'Framework to .NET 8+ upgrades',
+      'Database modernization',
+      'Zero-downtime deployment strategies',
+    ],
+  },
+  {
+    id: '02',
+    icon: '⟨⟩',
+    title: '.NET Development',
+    description: 'Backend systems, APIs, and business applications built on modern .NET. Clean, maintainable, and ready to scale.',
+    items: [
+      'REST API design & implementation',
+      'Business logic & domain modeling',
+      'SQL Server & Entity Framework',
+      'Clean architecture & best practices',
+    ],
+  },
+  {
+    id: '03',
+    icon: '⇄',
+    title: 'API Integration',
+    description: 'Connect your systems with third-party services and internal tools. From payment gateways to internal ERPs.',
+    items: [
+      'Third-party API consumption',
+      'Custom middleware & adapters',
+      'Authentication & security',
+      'Error handling & retry logic',
+    ],
+  },
+  {
+    id: '04',
+    icon: '▶',
+    title: 'Process Automation',
+    description: 'Turn manual, repetitive workflows into reliable automated processes. Save hours of your time and reduce error.',
+    items: [
+      'Scheduled tasks & background jobs',
+      'Data processing pipelines',
+      'Report generation',
+      'Notification & alert systems',
+    ],
+  },
+];
+---
+
+<section id="services" class="py-24 bg-indigo/10">
+  <div class="container mx-auto px-6">
+    <div class="mb-12">
+      <p class="font-mono text-sm text-teal-retro mb-2">// 02</p>
+      <h2 class="font-pixelbig text-5xl md:text-6xl text-mint mb-4">Services</h2>
+      <p class="font-mono text-mint/70 max-w-2xl">
+        What I can help you build. Every project is different, so if you don't see exactly what you need, reach out anyway.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {services.map((service) => (
+        <article class="group relative border-2 border-indigo bg-plum p-8 hover:border-mint transition-all duration-300">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-14 h-14 border-2 border-mint bg-indigo/30 flex items-center justify-center font-pixelbig text-3xl text-mint group-hover:bg-mint group-hover:text-plum transition-all">
+              {service.icon}
+            </div>
+            <span class="font-pixel text-xs text-teal-retro">{service.id}</span>
+          </div>
+
+          <h3 class="font-pixelbig text-3xl text-mint mb-3">
+            {service.title}
+          </h3>
+
+          <p class="font-mono text-sm text-mint/70 mb-6 leading-relaxed">
+            {service.description}
+          </p>
+
+          <ul class="space-y-2">
+            {service.items.map((item) => (
+              <li class="font-mono text-sm text-mint/80 flex items-start gap-3">
+                <span class="text-teal-retro mt-1">▸</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="absolute top-0 right-0 w-3 h-3 bg-mint opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 w-3 h-3 bg-teal-retro opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="font-typewriter text-xl text-teal-retro mb-4">
+        Have something else in mind?
+      </p>
+      <a href="#contact" class="inline-block px-6 py-3 border-2 border-mint text-mint font-mono hover:bg-mint hover:text-plum transition-all">
+        Let's talk about it
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="Legacy PHP App Modernization"
+  client="Growin Consulting | Public-Tender Aggregation Platform"
+  year="2024"
+  tagline="Feature delivery and performance work on a 10-year-old codebase."
+  role="Freelance developer — feature delivery + performance audit"
+  metrics={[
+    { value: '100% → 0%', label: 'scraper failure rate' },
+    { value: '3 tiers', label: 'access system' },
+    { value: 'Zero', label: 'downtime deploys' },
+  ]}
+  stack={[
+    'PHP 7.4', 'MySQL', 'Smarty templates', 'Proprietary in-house framework',
+    'Laravel Mix (SCSS/JS)', 'Stripe', 'Composer'
+  ]}
+>
+
+  <h2>The context</h2>
+
+  <p>
+    The client runs a platform that aggregates public procurement tenders from across Argentina — a tool that thousands of businesses depend on to find government contracts to bid on. The platform was built about five years ago on a legacy PHP stack with a <strong>proprietary in-house framework</strong>, no formal documentation, and none of the modern PHP conventions (no Composer autoload discipline, no PSR-4, custom ORM patterns).
+  </p>
+
+  <p>
+    I joined as a freelance developer to deliver three concrete things — while starting an ongoing audit of the codebase.
+  </p>
+
+  <h2>1. Fixing a broken production scraper</h2>
+
+  <p>
+    One of the government portals the platform scrapes had migrated from a static HTML listing to a JavaScript-driven single-page app backed by an AJAX API. The old scraper, which parsed the HTML directly, was completely broken. New tenders from that province were no longer being ingested.
+  </p>
+
+  <p>
+    Instead of patching the fragile HTML parsing, I <strong>reverse-engineered the new backend</strong> using browser developer tools, identified the internal JSON API the SPA uses, and rewrote the scraper to consume it directly. The detail pages still return HTML, so I adapted the field extraction to the new page structure.
+  </p>
+
+  <blockquote>
+    Result: from 100% failure rate to fully operational, currently ingesting around 120 tenders per run reliably.
+  </blockquote>
+
+  <h2>2. Building a tiered access system for AI features</h2>
+
+  <p>
+    The platform was rolling out two new premium AI features (document summarization + assistant chat) and needed a full access control system with three user tiers: Base, Premium, and Premium AI. This required work across the entire stack:
+  </p>
+
+  <ul>
+    <li><strong>Database</strong>: new plan entry, an audit table for AI usage with indexes optimized for both "lifetime count" and "rolling 30-day count" queries, plus routing changes.</li>
+    <li><strong>Backend</strong>: extended the session system to cache plan info in-memory (avoiding a database query on every permission check), and added the helper methods and endpoints the new features needed.</li>
+    <li><strong>Frontend</strong>: a JavaScript layer that checks permissions <em>before</em> opening any AI feature, plus accessible modals that adapt their message to the specific feature the user was trying to use.</li>
+    <li><strong>Deployment</strong>: I prepared a self-contained deployment package (files + SQL + rollback plan) so the client's deploy operator could ship it safely without me being present.</li>
+  </ul>
+
+  <h2>3. Performance audit</h2>
+
+  <p>
+    While the modernization work was in progress, I started a broader performance review. I identified several classes of anti-patterns typical of legacy PHP apps:
+  </p>
+
+  <ul>
+    <li><strong>N+1 queries</strong> inside listing loops — one of the top causes of slow pages.</li>
+    <li><strong>Static reference tables</strong> (plans, currencies, translations) being reloaded on every request instead of being cached.</li>
+    <li><strong>Derived session data</strong> being recomputed from the database on every check instead of being memoized. The plan-caching I introduced during the AI features work is one small example of this pattern applied surgically.</li>
+  </ul>
+
+  <p>
+    The audit is ongoing, with each finding delivered as a small, low-risk change rather than a big-bang refactor.
+  </p>
+
+  <h2>What this project demonstrates</h2>
+
+  <ul>
+    <li><strong>Reverse-engineering unfamiliar legacy code</strong> without documentation to identify what's safe to change and what will break.</li>
+    <li><strong>Extending a proprietary framework</strong> by learning its conventions from usage, not from docs (there aren't any).</li>
+    <li><strong>Incremental, low-risk delivery</strong> to a production system — small commits, DB-first migrations, rollback plans, isolated backend testing before frontend integration.</li>
+    <li><strong>Handoff-ready documentation</strong> so non-developer operators can deploy safely.</li>
+    <li><strong>Structural performance diagnosis</strong> instead of throwing infrastructure at slow pages.</li>
+  </ul>
+
+  <p>
+    This is exactly the kind of work most developers avoid — and exactly the kind of work that keeps businesses running while they figure out their long-term modernization strategy.
+  </p>
+
+</CaseStudyLayout>

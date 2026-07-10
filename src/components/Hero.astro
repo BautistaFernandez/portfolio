@@ -1,0 +1,114 @@
+---
+---
+
+<section id="hero" class="min-h-screen flex items-center pt-20 pb-12">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-[1fr_auto] gap-12 items-center">
+      <div>
+        <p class="font-mono text-sm text-teal-retro mb-4 flex items-center gap-2">
+          <span class="inline-block w-2 h-2 bg-mint rounded-full animate-pulse"></span>
+          Available for freelance work
+        </p>
+
+        <h1 class="font-pixelbig text-7xl md:text-8xl text-mint mb-6 glitch">
+          [Bautista Fernández]
+        </h1>
+
+        <p class="font-typewriter text-2xl md:text-3xl text-teal-retro mb-8">
+          Legacy systems modernization specialist<span class="cursor">_</span>
+        </p>
+
+        <p class="font-mono text-base text-mint/70 max-w-xl mb-10 leading-relaxed">
+          I help businesses bring outdated systems into the modern era. .NET migrations, API integrations, and process automation that actually works.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="px-6 py-3 bg-mint text-plum font-mono font-bold border-2 border-mint hover:bg-transparent hover:text-mint transition-all">
+            Get in touch
+          </a>
+          <a href="#projects" class="px-6 py-3 border-2 border-mint/40 text-mint font-mono hover:border-mint hover:bg-mint/10 transition-all">
+            See my work
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="relative">
+          <div class="w-64 h-64 bg-indigo border-4 border-mint p-2 pixelated">
+            <div class="w-full h-full bg-linear-to-br from-teal-retro to-blue-retro flex items-center justify-center font-pixel text-mint text-xs text-center px-4">
+              AVATAR<br/>PIXEL ART<br/>HERE
+            </div>
+          </div>
+          <div class="absolute -top-2 -left-2 w-4 h-4 bg-mint"></div>
+          <div class="absolute -top-2 -right-2 w-4 h-4 bg-teal-retro"></div>
+          <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-blue-retro"></div>
+          <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-indigo"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .glitch {
+    position: relative;
+    animation: glitch-skew 4s infinite linear alternate-reverse;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .glitch::before {
+    animation: glitch-anim-1 3s infinite linear alternate-reverse;
+    color: #6dbcb9;
+    z-index: -1;
+  }
+
+  .glitch::after {
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+    color: #4888b7;
+    z-index: -2;
+  }
+
+  @keyframes glitch-anim-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 2px); }
+    80% { transform: translate(2px, -1px); }
+  }
+
+  @keyframes glitch-anim-2 {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(2px, -1px); }
+    50% { transform: translate(-1px, 2px); }
+    75% { transform: translate(1px, 1px); }
+  }
+
+  @keyframes glitch-skew {
+    0%, 100% { transform: skew(0deg); }
+    20% { transform: skew(0.5deg); }
+    40% { transform: skew(-0.3deg); }
+    60% { transform: skew(0.2deg); }
+    80% { transform: skew(-0.4deg); }
+  }
+
+  .cursor {
+    display: inline-block;
+    color: #8cefb6;
+    animation: blink 1s infinite;
+    font-weight: bold;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+</style>

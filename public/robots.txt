@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bautistafernandez.dev/sitemap-index.xml

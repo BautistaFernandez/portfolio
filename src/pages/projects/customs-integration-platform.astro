@@ -1,0 +1,114 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="Customs Integration Platform"
+  client="Customs Brokerage Firm"
+  year="2025"
+  tagline="Replaced a 20-process legacy system with a single, modern service."
+  role="End-to-end design & development"
+  metrics={[
+    { value: '2h → 10s', label: 'per sync cycle' },
+    { value: '16GB → 300MB', label: 'RAM usage' },
+    { value: '24/7', label: 'in production' },
+  ]}
+  stack={[
+    '.NET 10', 'C#', 'Worker Service', 'Quartz.NET', 'Entity Framework Core 9',
+    'MySQL', 'Serilog', 'Polly', 'SOAP + XML digital signatures',
+    'WhatsApp Business Cloud API', 'Vue.js (dashboard)'
+  ]}
+>
+
+  <h2>The problem</h2>
+
+  <p>
+    A customs brokerage firm was running a legacy system built in Visual FoxPro 7 to sync with the web services of ARCA (the Argentine customs authority). To handle their client load, they had to run <strong>20 parallel processes</strong> at the same time.
+  </p>
+
+  <p>The results were painful:</p>
+
+  <ul>
+    <li>Each full sync cycle took <strong>more than 2 hours</strong> to complete.</li>
+    <li>The 20 processes together consumed <strong>gigabytes of RAM</strong>.</li>
+    <li>When something failed, no one knew until a client complained.</li>
+    <li>Recovery from any crash required manual intervention, sometimes at 3am.</li>
+  </ul>
+
+  <p>
+    The firm needed a system that was fast, reliable, and self-monitoring — one that could keep up with modern operations without requiring constant attention.
+  </p>
+
+  <h2>The solution</h2>
+
+  <p>
+    I designed and built a new system from scratch on modern .NET, replacing the 20 legacy processes with <strong>a single background service</strong> installed on Windows. Two modules run in parallel inside the same process, doing what previously required a small server farm.
+  </p>
+
+  <h3>Module 1 — Talking to ARCA</h3>
+
+  <p>
+    Instead of running processes in a loop hoping for the best, the new system uses a proper scheduler that fires jobs periodically for each type of service. Each job checks all active clients in parallel while respecting the timing rules the authority requires.
+  </p>
+
+  <p>Key improvements over the legacy system:</p>
+
+  <ul>
+    <li><strong>Modern authentication</strong>: cryptographic signing done natively instead of relying on external tools and batch scripts.</li>
+    <li><strong>Smart token caching</strong>: from hundreds of authentication tokens per day down to just two per service every 12 hours.</li>
+    <li><strong>Rate limiting per client</strong>: automatic handling of the authority's cooldown windows, so one slow client never blocks the others.</li>
+    <li><strong>Controlled parallelism</strong>: 10 clients processed at once by default, adjustable without touching code.</li>
+    <li><strong>Automatic recovery</strong>: transient network errors trigger retries with exponential backoff, invisible to operators.</li>
+  </ul>
+
+  <blockquote>
+    Result: what used to take 2 hours now completes in under 10 seconds per service, using about 300 MB of RAM total.
+  </blockquote>
+
+  <h3>Module 2 — Processing customs XML files</h3>
+
+  <p>
+    Customs brokers receive XML files from the customs system with the full details of every operation. The old approach was to write custom code for each field. Adding a new field meant a new deployment.
+  </p>
+
+  <p>
+    I built a <strong>declarative mapping engine</strong>: instead of code, mapping rules live in a database table. Adding a new field is a single <code>INSERT</code>, no deployment needed. The engine supports substrings, constants, contextual values, and fallbacks.
+  </p>
+
+  <p>
+    All writes happen inside a single atomic transaction, so a partial failure never leaves the database in an inconsistent state. If a file arrives before the corresponding data from the web service, it goes into a retry queue that reconciles automatically every 15 minutes.
+  </p>
+
+  <blockquote>
+    Result: ~3,500 accumulated files processed in minutes. New files now process in seconds.
+  </blockquote>
+
+  <h2>Making it self-monitoring</h2>
+
+  <p>
+    A system that runs 24/7 needs to tell you when something is wrong. I integrated the platform with the <strong>WhatsApp Business Cloud API</strong>: when the database goes down, a backlog grows too large, or a client has repeated failures, the system automatically messages the responsible team.
+  </p>
+
+  <p>
+    It also sends recovery notifications when things go back to normal, with built-in anti-spam so no one gets flooded during a long incident.
+  </p>
+
+  <p>
+    On top of that, the service is installed with automatic startup and native recovery actions in Windows. After three consecutive failures, it triggers a script that flags the next restart for special handling.
+  </p>
+
+  <h2>Impact</h2>
+
+  <ul>
+    <li><strong>Sync time</strong>: from 2 hours to under 10 seconds per service.</li>
+    <li><strong>Memory footprint</strong>: from several GB to ~300 MB total.</li>
+    <li><strong>Failure detection</strong>: from "wait for a client complaint" to "WhatsApp message within seconds".</li>
+    <li><strong>Adding new XML fields</strong>: from a full development cycle to a single database insert.</li>
+    <li><strong>Recovery</strong>: from manual intervention to fully automatic.</li>
+  </ul>
+
+  <p>
+    The system is currently in production, processing customs operations 24/7 for the firm.
+  </p>
+
+</CaseStudyLayout>

@@ -1,0 +1,370 @@
+---
+const games = [
+  {
+    id: '01',
+    title: 'DeepInside',
+    genre: 'Phsycological horror',
+    engine: 'Unity',
+    year: '2025-2026',
+    status: 'Published',
+    description: 'Phsycological horror game where the character get inside a loop and paranormals things follows him.',
+    tags: ['3D', 'Unity', 'C#', 'Phsycologil horror'],
+    link: null,
+  },
+  {
+    id: '02',
+    title: 'The Container',
+    genre: 'Phsycological horror',
+    engine: 'Unity',
+    year: '2026',
+    status: 'Published',
+    description: 'Inspired by fears to fathom 1st where you need to resolve puzzles to scape from the house while a little child wants to kill you',
+    tags: ['3D', 'Unity', 'C#', 'Phsycological horror'],
+    link: null,
+  },
+];
+---
+
+<section id="gamedev" class="py-24 relative overflow-hidden crt-section">
+  <div class="scanlines"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="mb-12">
+      <p class="font-mono text-sm text-teal-retro mb-2">// 04</p>
+      <div class="flex flex-wrap items-baseline gap-6">
+        <h2 class="font-pixelbig text-5xl md:text-6xl text-mint">Game Dev</h2>
+        <span class="font-pixel text-xs text-mint press-start">▸ PRESS START</span>
+      </div>
+      <p class="font-mono text-mint/70 max-w-2xl mt-4">
+        Where I started, and still my favorite part of programming. Currently studying game development at UTN Buenos Aires while working professionally in software.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-[auto_1fr] gap-12 items-start">
+
+      <div class="mx-auto lg:mx-0">
+        <div class="console">
+          <div class="console-top">
+            <div class="console-brand">GAME&nbsp;DEV</div>
+            <div class="console-lights">
+              <span class="led led-red"></span>
+              <span class="led led-green"></span>
+            </div>
+          </div>
+
+          <div class="console-screen-frame">
+            <div class="console-screen">
+              <div class="stars"></div>
+              <div class="ship">▲</div>
+              <div class="hud-top">
+                <span>SCORE 1337</span>
+                <span class="blink">P1</span>
+              </div>
+              <div class="hud-bottom">
+                <span>LIVES ♥ ♥ ♥</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="console-controls">
+            <div class="dpad">
+              <div class="dpad-center"></div>
+              <div class="dpad-up"></div>
+              <div class="dpad-down"></div>
+              <div class="dpad-left"></div>
+              <div class="dpad-right"></div>
+            </div>
+            <div class="buttons">
+              <div class="btn btn-b">B</div>
+              <div class="btn btn-a">A</div>
+            </div>
+          </div>
+
+          <div class="console-bottom">
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        {games.map((game) => (
+          <article class="group cartridge relative border-2 border-indigo bg-plum hover:border-mint transition-all duration-300">
+            <div class="p-6">
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                <div>
+                  <p class="font-pixel text-xs text-teal-retro mb-2">CART #{game.id}</p>
+                  <h3 class="font-pixelbig text-3xl text-mint">{game.title}</h3>
+                </div>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="font-mono text-xs text-mint/60">{game.year}</span>
+                  <span class="font-mono text-xs px-2 py-1 border border-teal-retro text-teal-retro">
+                    {game.status}
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-4 mb-4 font-mono text-xs text-mint/70">
+                <span><span class="text-teal-retro">GENRE:</span> {game.genre}</span>
+                <span><span class="text-teal-retro">ENGINE:</span> {game.engine}</span>
+              </div>
+
+              <p class="font-mono text-sm text-mint/80 mb-4 leading-relaxed">
+                {game.description}
+              </p>
+
+              <div class="flex flex-wrap gap-2">
+                {game.tags.map((tag) => (
+                  <span class="px-2 py-1 border border-indigo bg-indigo/20 text-mint/90 text-xs font-mono">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+
+        <div class="border-2 border-dashed border-indigo/60 p-6 text-center">
+          <p class="font-typewriter text-lg text-teal-retro mb-2">More cartridges loading...</p>
+          <p class="font-mono text-xs text-mint/60">New game dev projects coming as I progress through the program.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .crt-section {
+    background: linear-gradient(180deg, rgba(55, 33, 52, 0) 0%, rgba(71, 68, 118, 0.15) 50%, rgba(55, 33, 52, 0) 100%);
+  }
+
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(140, 239, 182, 0.03) 0px,
+      rgba(140, 239, 182, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .press-start {
+    animation: blink 1.2s infinite;
+    color: #8cefb6;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .console {
+    width: 280px;
+    background: #474476;
+    border: 4px solid #8cefb6;
+    border-radius: 12px 12px 32px 32px;
+    padding: 16px;
+    box-shadow:
+      6px 6px 0 rgba(0, 0, 0, 0.3),
+      inset 0 -8px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  .console-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+
+  .console-brand {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: #8cefb6;
+    letter-spacing: 1px;
+  }
+
+  .console-lights {
+    display: flex;
+    gap: 6px;
+  }
+
+  .led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px currentColor;
+  }
+
+  .led-red {
+    background: #ff5c5c;
+    color: #ff5c5c;
+    animation: blink 2s infinite;
+  }
+
+  .led-green {
+    background: #8cefb6;
+    color: #8cefb6;
+  }
+
+  .console-screen-frame {
+    background: #372134;
+    padding: 12px;
+    border-radius: 4px;
+    border: 2px solid #6dbcb9;
+  }
+
+  .console-screen {
+    background: #0a1a1a;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Press Start 2P', monospace;
+    color: #8cefb6;
+  }
+
+  .console-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(140, 239, 182, 0.08) 0px,
+      rgba(140, 239, 182, 0.08) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #8cefb6, transparent),
+      radial-gradient(1px 1px at 60% 70%, #6dbcb9, transparent),
+      radial-gradient(1px 1px at 40% 80%, #8cefb6, transparent),
+      radial-gradient(1px 1px at 80% 20%, #4888b7, transparent),
+      radial-gradient(1px 1px at 30% 50%, #8cefb6, transparent),
+      radial-gradient(1px 1px at 90% 60%, #6dbcb9, transparent);
+    background-size: 100% 100%;
+    animation: star-scroll 4s linear infinite;
+  }
+
+  @keyframes star-scroll {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+  }
+
+  .ship {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #8cefb6;
+    animation: ship-move 3s ease-in-out infinite;
+    text-shadow: 0 0 4px #8cefb6;
+  }
+
+  @keyframes ship-move {
+    0%, 100% { transform: translateX(-80%); }
+    50% { transform: translateX(20%); }
+  }
+
+  .hud-top, .hud-bottom {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7px;
+    color: #8cefb6;
+  }
+
+  .hud-top { top: 8px; }
+  .hud-bottom { bottom: 8px; }
+
+  .console-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 4px;
+  }
+
+  .dpad {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+
+  .dpad-center {
+    position: absolute;
+    top: 20px; left: 20px;
+    width: 20px; height: 20px;
+    background: #372134;
+    border-radius: 3px;
+  }
+
+  .dpad-up, .dpad-down, .dpad-left, .dpad-right {
+    position: absolute;
+    background: #372134;
+  }
+
+  .dpad-up    { top: 0;   left: 20px; width: 20px; height: 22px; border-radius: 3px 3px 0 0; }
+  .dpad-down  { bottom: 0; left: 20px; width: 20px; height: 22px; border-radius: 0 0 3px 3px; }
+  .dpad-left  { top: 20px; left: 0;   width: 22px; height: 20px; border-radius: 3px 0 0 3px; }
+  .dpad-right { top: 20px; right: 0;  width: 22px; height: 20px; border-radius: 0 3px 3px 0; }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+    transform: rotate(-25deg);
+  }
+
+  .btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #372134;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+
+  .btn:hover { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); }
+
+  .btn-a { background: #8cefb6; }
+  .btn-b { background: #6dbcb9; }
+
+  .console-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 16px;
+  }
+
+  .speaker {
+    width: 4px;
+    height: 20px;
+    background: #372134;
+    border-radius: 2px;
+    transform: rotate(20deg);
+  }
+
+  .cartridge {
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  }
+</style>

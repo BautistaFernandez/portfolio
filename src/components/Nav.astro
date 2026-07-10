@@ -1,0 +1,27 @@
+---
+const links = [
+  { href: '/#about', label: 'About' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#gamedev', label: 'Game Dev' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-plum/80 backdrop-blur-sm border-b border-indigo/40">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="font-pixel text-mint text-sm hover:text-teal-retro transition-colors">
+      {'<BF/>'}
+    </a>
+    <ul class="hidden md:flex gap-8">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="font-mono text-sm text-mint/70 hover:text-mint transition-colors relative group">
+            {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-px bg-mint group-hover:w-full transition-all duration-300"></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

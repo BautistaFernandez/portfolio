@@ -1,0 +1,112 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="Automated Notification System"
+  client="Customs Brokerage Firm"
+  year="2025"
+  tagline="Modernizing critical operations without touching the legacy system."
+  role="End-to-end design, development & deployment"
+  metrics={[
+    { value: '10 min → 25 sec', label: 'per notification' },
+    { value: 'Zero', label: 'typing errors' },
+    { value: 'Multi-tenant', label: 'ready' },
+  ]}
+  stack={[
+    'Blazor WebAssembly', '.NET 10', 'ASP.NET Core Web API',
+    'PostgreSQL', 'MySQL (legacy)', 'BackgroundService',
+    'SMTP + HTML templates', 'Nginx', 'Let\'s Encrypt', 'Ubuntu VPS', 'systemd'
+  ]}
+>
+
+  <h2>The problem</h2>
+
+  <p>
+    A customs brokerage firm was running its entire operation on a legacy system built in Visual FoxPro 7. One daily task consumed hours across the whole office: <strong>notifying each client every time their shipment was cleared by customs</strong>.
+  </p>
+
+  <p>
+    The process was completely manual. An operator would look up the customs record, copy the relevant details, write an email, and send it. Multiple operators doing this dozens of times a day meant slow turnaround, high risk of typing errors on critical data, and no traceability of who sent what.
+  </p>
+
+  <p>
+    Replacing the whole legacy system wasn't an option — the historical database and daily workflows were mature and working. The solution had to <strong>modernize without breaking anything</strong>.
+  </p>
+
+  <h2>The solution</h2>
+
+  <p>
+    I designed and built a standalone web application that <strong>connects directly to the legacy database in read-only mode</strong> and automates the notification workflow. The new app runs alongside the old system without requiring a single change to it.
+  </p>
+
+  <p>How it works:</p>
+
+  <ul>
+    <li>The operator enters the customs record number.</li>
+    <li>The system pulls all relevant data from the legacy database (client, invoice, shipment details, containers, etc.) and shows it on an editable dashboard.</li>
+    <li>With one click, the operator sends a professional email to the client's recipients.</li>
+    <li>Recipients are saved per client for next time.</li>
+    <li>Every send is logged for auditability.</li>
+    <li>Every day at 10pm, a background job automatically sends each broker a consolidated summary of the day's notifications.</li>
+  </ul>
+
+  <h2>Multi-tenant from day one</h2>
+
+  <p>
+    The system was designed to host multiple brokers on the same instance, with strict data isolation:
+  </p>
+
+  <ul>
+    <li><strong>Broker (owner)</strong>: manages their team, sees full history, configures who gets the daily summary.</li>
+    <li><strong>Team operators</strong>: send notifications on behalf of the broker, with limited access.</li>
+    <li>Each broker only sees their own data, ever.</li>
+  </ul>
+
+  <p>
+    This means the same infrastructure can serve additional brokers in the future without any code changes.
+  </p>
+
+  <h2>Production-grade deployment</h2>
+
+  <p>
+    This isn't a demo. The system runs on a proper VPS with the full stack of what production means:
+  </p>
+
+  <ul>
+    <li>Ubuntu server with Nginx as reverse proxy.</li>
+    <li>HTTPS with Let's Encrypt and automatic renewal.</li>
+    <li>Isolated DEV and PROD environments.</li>
+    <li>systemd for service management and automatic restarts.</li>
+    <li>Structured logging for troubleshooting.</li>
+  </ul>
+
+  <p>
+    The same server already hosts a second microservice for the same client, part of an ongoing effort to modernize the legacy system piece by piece — without ever taking it offline.
+  </p>
+
+  <h2>Impact</h2>
+
+  <ul>
+    <li><strong>Time per notification</strong>: from minutes to seconds.</li>
+    <li><strong>Typing errors on critical data</strong>: eliminated.</li>
+    <li><strong>Traceability</strong>: every notification logged and auditable.</li>
+    <li><strong>Privacy</strong>: operators can send notifications without accessing the broker's personal email.</li>
+    <li><strong>Adoption</strong>: brokers and operators started using the tool without formal training — the UX was designed for non-technical users from the ground up.</li>
+  </ul>
+
+  <h2>What makes this project different</h2>
+
+  <p>
+    <strong>Integration with legacy without invading it.</strong> Not a single line of legacy code was touched. The old system kept operating exactly as before, unaware of the new one.
+  </p>
+
+  <p>
+    <strong>Real production deployment.</strong> Real VPS, real domain, real HTTPS, real environments, real monitoring. This runs 24/7 and clients depend on it every day.
+  </p>
+
+  <p>
+    <strong>Extensible foundation.</strong> The infrastructure was designed to grow. Every next modernization step can plug into the same base without starting over.
+  </p>
+
+</CaseStudyLayout>
