@@ -14,14 +14,14 @@ const socials = [
   },
   {
     label: 'LinkedIn',
-    value: 'https://www.linkedin.com/in/bautista-fernandez-buteler/',
+    value: 'bautista-fernandez-buteler',
     href: 'https://www.linkedin.com/in/bautista-fernandez-buteler/',
     icon: '⚉',
   },
 ];
 ---
 
-<section id="contact" class="py-24 bg-indigo/10">
+<section id="contact" class="py-24 bg-indigo/10 overflow-hidden">
   <div class="container mx-auto px-6">
     <div class="mb-12">
       <p class="font-mono text-sm text-teal-retro mb-2">// 05</p>
@@ -34,7 +34,7 @@ const socials = [
     <div class="grid md:grid-cols-[2fr_1fr] gap-8 md:gap-12">
 
       <div class="relative">
-        <div class="border-2 border-mint bg-plum p-8 relative">
+        <div class="border-2 border-mint bg-plum p-5 sm:p-8 relative">
           <div class="absolute -top-3 left-4 bg-plum px-2">
             <p class="font-pixel text-mint text-xs">NEW MESSAGE</p>
           </div>
@@ -80,7 +80,7 @@ const socials = [
               <select
                 id="subject"
                 name="subject"
-                class="w-full bg-plum border-2 border-indigo focus:border-mint text-mint font-mono px-4 py-3 outline-none transition-colors"
+                class="w-full min-w-0 bg-plum border-2 border-indigo focus:border-mint text-mint font-mono px-4 py-3 outline-none transition-colors"
               >
                 <option value="project">New project</option>
                 <option value="consulting">Consulting</option>
@@ -103,13 +103,13 @@ const socials = [
               ></textarea>
             </div>
 
-            <div class="flex items-center justify-between flex-wrap gap-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <p class="font-mono text-xs text-mint/50">
                 <span class="text-teal-retro">i</span> Reply within 24-48hs
               </p>
               <button
                 type="submit"
-                class="group px-8 py-3 bg-mint text-plum font-mono font-bold border-2 border-mint hover:bg-transparent hover:text-mint transition-all flex items-center gap-3"
+                class="group w-full sm:w-auto px-6 py-3 bg-mint text-plum font-mono font-bold border-2 border-mint hover:bg-transparent hover:text-mint transition-all flex items-center justify-center gap-3"
               >
                 <span>SEND MESSAGE</span>
                 <span class="group-hover:translate-x-1 transition-transform">▸</span>
@@ -127,13 +127,14 @@ const socials = [
         </p>
 
         {socials.map((social) => (
-            <a
-                href={social.href}
-                target={social.href.startsWith('http') ? '_blank' : undefined}
-                rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                class="group flex items-center gap-4 p-4 border-2 border-indigo bg-plum hover:border-mint transition-all"
+            
+            <a  
+              href={social.href}
+              target={social.href.startsWith('http') ? '_blank' : undefined}
+              rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="group flex items-center gap-4 p-4 border-2 border-indigo bg-plum hover:border-mint transition-all"
             >
-                <div class="w-12 h-12 border-2 border-mint bg-indigo/30 flex items-center justify-center font-pixelbig text-2xl text-mint group-hover:bg-mint group-hover:text-plum transition-all">
+                <div class="shrink-0 w-12 h-12 border-2 border-mint bg-indigo/30 flex items-center justify-center font-pixelbig text-2xl text-mint group-hover:bg-mint group-hover:text-plum transition-all">
                 {social.icon}
                 </div>
                 <div class="flex-1 min-w-0">
@@ -144,7 +145,7 @@ const socials = [
                     {social.value}
                 </p>
                 </div>
-                <span class="font-mono text-mint/40 group-hover:text-mint group-hover:translate-x-1 transition-all">↗</span>
+                <span class="shrink-0 font-mono text-mint/40 group-hover:text-mint group-hover:translate-x-1 transition-all">↗</span>
             </a>
         ))}
 
